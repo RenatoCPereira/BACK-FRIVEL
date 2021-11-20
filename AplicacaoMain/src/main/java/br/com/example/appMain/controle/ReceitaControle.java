@@ -17,11 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.example.appMain.model.entidades.Receita;
-import br.com.example.appMain.model.entidades.Usuario;
 import br.com.example.appMain.model.repositorio.ReceitaRepositorio;
 
 @RestController
-@RequestMapping("api/receita")
+@RequestMapping("/api/receita")
 public class ReceitaControle {
 	
 	@Autowired

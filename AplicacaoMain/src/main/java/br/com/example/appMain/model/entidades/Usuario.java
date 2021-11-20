@@ -1,5 +1,6 @@
 package br.com.example.appMain.model.entidades;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,13 +13,16 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+	
+	@Column(name="Nome")
 	@NotBlank(message = "Informe o nome")
 	private String nome;
 	
+	@Column(name="Senha")
 	@NotBlank(message = "Informe a senha")
 	private String senha;
 	
+	@Column(name="Email")
 	@NotBlank(message = "Informe o email")
 	private String email;
 
