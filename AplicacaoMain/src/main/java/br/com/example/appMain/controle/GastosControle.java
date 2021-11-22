@@ -16,51 +16,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.example.appMain.model.entidades.Meta;
-import br.com.example.appMain.model.repositorio.MetaRepositorio;
+import br.com.example.appMain.model.entidades.Gastos;
+import br.com.example.appMain.model.repositorio.GastosRepositorio;
 
 @RestController
-@RequestMapping("/api/meta")
-public class MetaControle {
-
+@RequestMapping("/api/gastos")
+public class GastosControle {
+	
 	@Autowired
-	private MetaRepositorio metaRepositorio;
-
-	@PostMapping("/novameta")
-	public @ResponseBody Meta novaMeta(@Valid Meta meta) {
-		metaRepositorio.save(meta);
-		return meta;
+	private GastosRepositorio gastosRepositorio;
+	
+	@PostMapping("/novogastos")
+	public @ResponseBody Gastos novoGastos(@Valid Gastos gastos) {
+		gastosRepositorio.save(gastos);
+		return gastos;
 	}
-
-	@GetMapping("obtermetas")
-	public Iterable<Meta> obterMetas() {
-		return metaRepositorio.findAll();
+	
+	@GetMapping("obtergastos")
+	public Iterable<Gastos> obterGastos() {
+		return gastosRepositorio.findAll();
 
 	}
 	
 	@GetMapping(path = "/{id}")
-	public Optional<Meta> obterMetasId(@PathVariable int id){
-		return metaRepositorio.findById(id);
+	public Optional<Gastos> obterGastosId(@PathVariable int id){
+		return gastosRepositorio.findById(id);
 		
 	}
 	@PutMapping("/alterarmeta")
-	public @ResponseBody Meta alterarMeta(@Valid Meta meta) {
-		metaRepositorio.save(meta);
-		return meta;
+	public @ResponseBody Gastos alterarGasto(@Valid Gastos gastos) {
+		gastosRepositorio.save(gastos);
+		return gastos;
 		
 	}
 	
 	@DeleteMapping(path = "/{id}")
-	public void excluirMetaId(@PathVariable int id) {
-		metaRepositorio.deleteById(id);
+	public void excluirGastosId(@PathVariable int id) {
+		gastosRepositorio.deleteById(id);
 	}
-	
 	@GetMapping(path = "/pagina/{numeroPagina}/{qtdePagina}")
-	public Iterable<Meta> obterMetaPagina(@PathVariable int numeroPagina, @PathVariable int qtdePagina) {
+	public Iterable<Gastos> obterGastosPagina(@PathVariable int numeroPagina, @PathVariable int qtdePagina) {
 		if (qtdePagina >= 5)
 			qtdePagina = 5;
 		Pageable page = PageRequest.of(numeroPagina, qtdePagina);
-		return metaRepositorio.findAll(page);
+		return gastosRepositorio.findAll(page);
 	}
 
 

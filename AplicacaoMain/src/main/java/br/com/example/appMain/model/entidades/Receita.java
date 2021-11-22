@@ -18,6 +18,7 @@ public class Receita {
 	@Column(name="idUsur")
 	private int idUsuario;
 	
+	@Column(name="Descricao")
 	private String descricao;
 	
 	@Column(name="dtReceita")
