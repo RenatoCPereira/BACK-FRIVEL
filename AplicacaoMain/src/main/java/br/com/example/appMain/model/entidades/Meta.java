@@ -7,6 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Meta {
@@ -15,36 +18,48 @@ public class Meta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idMeta;
 
-	@Column(name="dlMeta")
+	@Column(name = "dlMeta")
+	@NotBlank(message = "Informe a dtMeta")
 	private Date dtMeta;
 
-	@Column(name="Descricao")
+	@Column(name = "Descricao")
+	@NotBlank(message = "Informe a descricao")
 	private String descricao;
 
-	@Column(name="Name")
+	@Column(name = "Name")
+	@NotBlank(message = "Informe o nome")
 	private String nome;
-	
-	@Column(name="vlMeta")
+
+	@Column(name = "vlMeta")
+	@NotBlank(message = "Informe o vlMeta")
 	private double vlMeta;
 
-	public Meta(int idMeta, Date dtMeta, String descricao, String nome, double vlMeta) {
+	@ManyToOne
+	@JoinColumn(name = "usuario_id", nullable = true)
+	private Usuario usuario;
+
+	public Meta(int idMeta, @NotBlank(message = "Informe a dtMeta") Date dtMeta,
+			@NotBlank(message = "Informe a descricao") String descricao,
+			@NotBlank(message = "Informe o nome") String nome, @NotBlank(message = "Informe o vlMeta") double vlMeta,
+			Usuario usuario) {
 		this.idMeta = idMeta;
 		this.dtMeta = dtMeta;
 		this.descricao = descricao;
 		this.nome = nome;
 		this.vlMeta = vlMeta;
+		this.usuario = usuario;
 	}
 
 	public Meta() {
 
 	}
 
-	public int getIdMate() {
+	public int getIdMeta() {
 		return idMeta;
 	}
 
-	public void setIdMate(int idMate) {
-		this.idMeta = idMate;
+	public void setIdMeta(int idMeta) {
+		this.idMeta = idMeta;
 	}
 
 	public Date getDtMeta() {
@@ -78,7 +93,14 @@ public class Meta {
 	public void setVlMeta(double vlMeta) {
 		this.vlMeta = vlMeta;
 	}
-	
-	
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	
 }

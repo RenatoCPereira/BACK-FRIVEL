@@ -79,4 +79,10 @@ public class UsuarioControle {
 
 	}
 
+	@GetMapping(path = "/{login}/{senha}")
+	public void logar(@PathVariable String login, @PathVariable String senha) {
+		Optional<Usuario> usu = usuarioRepositorio.findByEmailAndSenha(login, senha);
+		// colocar a logica de redirecionamento
+	}
+
 }
