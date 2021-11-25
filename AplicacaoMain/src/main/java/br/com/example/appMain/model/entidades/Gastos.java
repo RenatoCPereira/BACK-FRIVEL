@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Gastos {
 
@@ -19,7 +21,6 @@ public class Gastos {
 	private int idGastos;
 
 	@Column(name = "vlGastos")
-	@NotBlank(message = "Informe o vlGastos")
 	private double vlGastos;
 
 	@Column(name = "Descricao")
@@ -31,32 +32,28 @@ public class Gastos {
 	private String recorrencia;
 
 	@Column(name = "dtGastos")
-	@NotBlank(message = "Informe o dtGastos")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dtGastos;
 
 	@Column(name = "Juros")
-	@NotBlank(message = "Informe o juros")
 	private double juros;
 
 	@Column(name = "dtVencimento")
-	@NotBlank(message = "Informe a dtVencimento")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dtVencimento;
 
 	@Column(name = "Parcelas")
-	@NotBlank(message = "Informe as parcelas")
 	private int parcelas;
 
 	@ManyToOne
 	@JoinColumn(name = "usuario_id", nullable = true)
 	private Usuario usuario;
 
-	public Gastos(int idGastos, @NotBlank(message = "Informe o vlGastos") double vlGastos,
-			@NotBlank(message = "Informe o descricao") String descricao,
-			@NotBlank(message = "Informe a recorrencia") String recorrencia,
-			@NotBlank(message = "Informe o dtGastos") Date dtGastos,
-			@NotBlank(message = "Informe o juros") double juros,
-			@NotBlank(message = "Informe a dtVencimento") Date dtVencimento,
-			@NotBlank(message = "Informe as parcelas") int parcelas, Usuario usuario) {
+	
+	public Gastos(int idGastos, double vlGastos, @NotBlank(message = "Informe o descricao") String descricao,
+			@NotBlank(message = "Informe a recorrencia") String recorrencia, Date dtGastos, double juros,
+			Date dtVencimento, int parcelas, Usuario usuario) {
+		super();
 		this.idGastos = idGastos;
 		this.vlGastos = vlGastos;
 		this.descricao = descricao;
@@ -69,7 +66,7 @@ public class Gastos {
 	}
 
 	public Gastos() {
-		
+
 	}
 
 	public int getIdGastos() {
@@ -143,6 +140,5 @@ public class Gastos {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
 
 }

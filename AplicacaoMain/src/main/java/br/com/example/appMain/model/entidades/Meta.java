@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Meta {
 
@@ -18,8 +20,9 @@ public class Meta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idMeta;
 
-	@Column(name = "dlMeta")
-	@NotBlank(message = "Informe a dtMeta")
+	@Column(name = "dtMeta")
+
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dtMeta;
 
 	@Column(name = "Descricao")
@@ -30,8 +33,7 @@ public class Meta {
 	@NotBlank(message = "Informe o nome")
 	private String nome;
 
-	@Column(name = "vlMeta")
-	@NotBlank(message = "Informe o vlMeta")
+	@Column(name = "vlMeta")	
 	private double vlMeta;
 
 	@ManyToOne
@@ -102,5 +104,4 @@ public class Meta {
 		this.usuario = usuario;
 	}
 
-	
 }

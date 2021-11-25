@@ -19,30 +19,37 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.example.appMain.model.entidades.Meta;
 import br.com.example.appMain.model.repositorio.MetaRepositorio;
 
+//CHAMADA DA CLASSE
 @RestController
 @RequestMapping("/api/meta")
 public class MetaControle {
 
+	// INSTANCIANDO O REPOSITORIO
 	@Autowired
 	private MetaRepositorio metaRepositorio;
 
+	// CHAMADA DO METODO PARA INCLUIR META
 	@PostMapping("/novameta")
 	public @ResponseBody Meta novaMeta(@Valid Meta meta) {
 		metaRepositorio.save(meta);
 		return meta;
 	}
 
-	@GetMapping("obtermetas")
+	// CHAMADA DO METODO PARA OBTER TODAS AS METAS
+	@GetMapping("/obtermetas")
 	public Iterable<Meta> obterMetas() {
 		return metaRepositorio.findAll();
 
 	}
 	
+	// CHAMADA DO METODO PELO IDENTIFICADOR
 	@GetMapping(path = "/{id}")
 	public Optional<Meta> obterMetasId(@PathVariable int id){
 		return metaRepositorio.findById(id);
 		
 	}
+	
+	// CHAMADA DO METODO PARA ALTERAR META
 	@PutMapping("/alterarmeta")
 	public @ResponseBody Meta alterarMeta(@Valid Meta meta) {
 		metaRepositorio.save(meta);
@@ -50,11 +57,14 @@ public class MetaControle {
 		
 	}
 	
+	// CHAMADA DO METODO PARA DELETAR META
 	@DeleteMapping(path = "/{id}")
 	public void excluirMetaId(@PathVariable int id) {
 		metaRepositorio.deleteById(id);
 	}
 	
+	
+	// CHAMADA DO METODO PARA COLOCAR A QUANTIDADE DE METAS POR PAGINA
 	@GetMapping(path = "/pagina/{numeroPagina}/{qtdePagina}")
 	public Iterable<Meta> obterMetaPagina(@PathVariable int numeroPagina, @PathVariable int qtdePagina) {
 		if (qtdePagina >= 5)

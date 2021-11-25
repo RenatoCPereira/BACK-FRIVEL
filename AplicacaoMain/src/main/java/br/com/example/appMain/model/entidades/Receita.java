@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Receita {
 
@@ -23,20 +25,18 @@ public class Receita {
 	private String descricao;
 
 	@Column(name = "dtReceita")
-	@NotBlank(message = "Informe a dtReceita")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date dataReceita;
 
 	@Column(name = "vlReceita")
-	@NotBlank(message = "Informe o vlReceita")
 	private double valorReceita;
 
 	@ManyToOne
 	@JoinColumn(name = "usuario_id", nullable = true)
 	private Usuario usuario;
 
-	public Receita(int idReceita, @NotBlank(message = "Informe a descricao") String descricao,
-			@NotBlank(message = "Informe a dtReceita") Date dataReceita,
-			@NotBlank(message = "Informe o vlReceita") double valorReceita, Usuario usuario) {
+	public Receita(int idReceita, @NotBlank(message = "Informe a descricao") String descricao, Date dataReceita,
+			double valorReceita, Usuario usuario) {
 		this.idReceita = idReceita;
 		this.descricao = descricao;
 		this.dataReceita = dataReceita;
@@ -64,6 +64,7 @@ public class Receita {
 		this.descricao = descricao;
 	}
 
+	
 	public Date getDataReceita() {
 		return dataReceita;
 	}

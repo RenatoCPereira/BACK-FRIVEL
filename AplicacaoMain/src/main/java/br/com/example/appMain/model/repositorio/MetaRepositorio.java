@@ -5,4 +5,6 @@ import br.com.example.appMain.model.entidades.Meta;
 
 public interface MetaRepositorio extends PagingAndSortingRepository<Meta, Integer> {
 
+	public Iterable<Meta> findByNomeContainingIgnoreCase(String parteNome);
+
 }
