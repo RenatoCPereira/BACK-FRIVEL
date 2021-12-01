@@ -79,10 +79,13 @@ public class UsuarioControle {
 
 	}
 
+	//// CHAMADA DO METODO LOGIN
 	@GetMapping(path = "/{login}/{senha}")
-	public void logar(@PathVariable String login, @PathVariable String senha) {
+	public Optional<Usuario> logar(@PathVariable String login, @PathVariable String senha) {
 		Optional<Usuario> usu = usuarioRepositorio.findByEmailAndSenha(login, senha);
-		// colocar a logica de redirecionamento
-	}
+		return usu;
 
+	}
+	
+	
 }

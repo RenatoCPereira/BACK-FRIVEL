@@ -1,6 +1,6 @@
 package br.com.example.appMain.model.entidades;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,50 +18,41 @@ public class Gastos {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idGastos;
-
-	@Column(name = "vlGastos")
-	private double vlGastos;
+	private int idGasto;
 
 	@Column(name = "Descricao")
 	@NotBlank(message = "Informe o descricao")
 	private String descricao;
 
-	@Column(name = "Recorrencia")
+	@Column(name = "Categoria")
 	@NotBlank(message = "Informe a recorrencia")
-	private String recorrencia;
+	private String categoria;
 
-	@Column(name = "dtGastos")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date dtGastos;
+	@Column(name = "TipoDoGasto")
+	@NotBlank(message = "Informe a recorrencia")
+	private String tipoDoGasto;
 
-	@Column(name = "Juros")
-	private double juros;
+	@Column(name = "vlGasto")
+	private double valor;
 
-	@Column(name = "dtVencimento")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date dtVencimento;
-
-	@Column(name = "Parcelas")
-	private int parcelas;
+	@Column(name = "dtGasto")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dtGastos;
 
 	@ManyToOne
 	@JoinColumn(name = "usuario_id", nullable = true)
 	private Usuario usuario;
 
-	
-	public Gastos(int idGastos, double vlGastos, @NotBlank(message = "Informe o descricao") String descricao,
-			@NotBlank(message = "Informe a recorrencia") String recorrencia, Date dtGastos, double juros,
-			Date dtVencimento, int parcelas, Usuario usuario) {
-		super();
-		this.idGastos = idGastos;
-		this.vlGastos = vlGastos;
+	public Gastos(int idGasto, @NotBlank(message = "Informe o descricao") String descricao,
+			@NotBlank(message = "Informe a recorrencia") String categoria,
+			@NotBlank(message = "Informe a recorrencia") String tipoDoGasto, double valor, LocalDate dtGastos,
+			Usuario usuario) {
+		this.idGasto = idGasto;
 		this.descricao = descricao;
-		this.recorrencia = recorrencia;
+		this.categoria = categoria;
+		this.tipoDoGasto = tipoDoGasto;
+		this.valor = valor;
 		this.dtGastos = dtGastos;
-		this.juros = juros;
-		this.dtVencimento = dtVencimento;
-		this.parcelas = parcelas;
 		this.usuario = usuario;
 	}
 
@@ -69,20 +60,12 @@ public class Gastos {
 
 	}
 
-	public int getIdGastos() {
-		return idGastos;
+	public int getIdGasto() {
+		return idGasto;
 	}
 
-	public void setIdGastos(int idGastos) {
-		this.idGastos = idGastos;
-	}
-
-	public double getVlGastos() {
-		return vlGastos;
-	}
-
-	public void setVlGastos(double vlGastos) {
-		this.vlGastos = vlGastos;
+	public void setIdGasto(int idGasto) {
+		this.idGasto = idGasto;
 	}
 
 	public String getDescricao() {
@@ -93,44 +76,36 @@ public class Gastos {
 		this.descricao = descricao;
 	}
 
-	public String getRecorrencia() {
-		return recorrencia;
+	public String getCategoria() {
+		return categoria;
 	}
 
-	public void setRecorrencia(String recorrencia) {
-		this.recorrencia = recorrencia;
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
-	public Date getDtGastos() {
+	public String getTipoDoGasto() {
+		return tipoDoGasto;
+	}
+
+	public void setTipoDoGasto(String tipoDoGasto) {
+		this.tipoDoGasto = tipoDoGasto;
+	}
+
+	public double getValor() {
+		return valor;
+	}
+
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
+	public LocalDate getDtGastos() {
 		return dtGastos;
 	}
 
-	public void setDtGastos(Date dtGastos) {
+	public void setDtGastos(LocalDate dtGastos) {
 		this.dtGastos = dtGastos;
-	}
-
-	public double getJuros() {
-		return juros;
-	}
-
-	public void setJuros(double juros) {
-		this.juros = juros;
-	}
-
-	public Date getDtVencimento() {
-		return dtVencimento;
-	}
-
-	public void setDtVencimento(Date dtVencimento) {
-		this.dtVencimento = dtVencimento;
-	}
-
-	public int getParcelas() {
-		return parcelas;
-	}
-
-	public void setParcelas(int parcelas) {
-		this.parcelas = parcelas;
 	}
 
 	public Usuario getUsuario() {
@@ -140,5 +115,6 @@ public class Gastos {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
 
 }

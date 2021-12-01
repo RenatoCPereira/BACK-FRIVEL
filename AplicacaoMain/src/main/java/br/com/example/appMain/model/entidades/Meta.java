@@ -1,6 +1,6 @@
 package br.com.example.appMain.model.entidades;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,9 +21,8 @@ public class Meta {
 	private int idMeta;
 
 	@Column(name = "dtMeta")
-
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date dtMeta;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dtMeta;
 
 	@Column(name = "Descricao")
 	@NotBlank(message = "Informe a descricao")
@@ -33,17 +32,15 @@ public class Meta {
 	@NotBlank(message = "Informe o nome")
 	private String nome;
 
-	@Column(name = "vlMeta")	
+	@Column(name = "vlMeta")
 	private double vlMeta;
 
 	@ManyToOne
 	@JoinColumn(name = "usuario_id", nullable = true)
 	private Usuario usuario;
 
-	public Meta(int idMeta, @NotBlank(message = "Informe a dtMeta") Date dtMeta,
-			@NotBlank(message = "Informe a descricao") String descricao,
-			@NotBlank(message = "Informe o nome") String nome, @NotBlank(message = "Informe o vlMeta") double vlMeta,
-			Usuario usuario) {
+	public Meta(int idMeta, LocalDate dtMeta, @NotBlank(message = "Informe a descricao") String descricao,
+			@NotBlank(message = "Informe o nome") String nome, double vlMeta, Usuario usuario) {
 		this.idMeta = idMeta;
 		this.dtMeta = dtMeta;
 		this.descricao = descricao;
@@ -64,11 +61,11 @@ public class Meta {
 		this.idMeta = idMeta;
 	}
 
-	public Date getDtMeta() {
+	public LocalDate getDtMeta() {
 		return dtMeta;
 	}
 
-	public void setDtMeta(Date dtMeta) {
+	public void setDtMeta(LocalDate dtMeta) {
 		this.dtMeta = dtMeta;
 	}
 
