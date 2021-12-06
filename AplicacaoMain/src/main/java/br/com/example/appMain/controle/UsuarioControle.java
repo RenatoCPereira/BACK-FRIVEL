@@ -24,6 +24,7 @@ import br.com.example.appMain.model.repositorio.UsuarioRepositorio;
 @RequestMapping("/api/usuario")
 public class UsuarioControle {
 
+	private static final int Usuario = 0;
 	// INSTANCIANDO O REPOSITORIO
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
@@ -86,6 +87,5 @@ public class UsuarioControle {
 		return usu;
 
 	}
-	
-	
+
 }

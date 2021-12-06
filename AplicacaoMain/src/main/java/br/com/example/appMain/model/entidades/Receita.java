@@ -1,7 +1,5 @@
 package br.com.example.appMain.model.entidades;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Receita {
@@ -24,9 +20,9 @@ public class Receita {
 	@NotBlank(message = "Informe a descricao")
 	private String descricao;
 
-	@Column(name = "dtReceita")
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	private Date dataReceita;
+	@Column(name = "Tipo")
+	@NotBlank(message = "Informe a descricao")
+	private String tipo;
 
 	@Column(name = "vlReceita")
 	private double valorReceita;
@@ -35,11 +31,11 @@ public class Receita {
 	@JoinColumn(name = "usuario_id", nullable = true)
 	private Usuario usuario;
 
-	public Receita(int idReceita, @NotBlank(message = "Informe a descricao") String descricao, Date dataReceita,
-			double valorReceita, Usuario usuario) {
+	public Receita(int idReceita, @NotBlank(message = "Informe a descricao") String descricao,
+			@NotBlank(message = "Informe a descricao") String tipo, double valorReceita, Usuario usuario) {
 		this.idReceita = idReceita;
 		this.descricao = descricao;
-		this.dataReceita = dataReceita;
+		this.tipo = tipo;
 		this.valorReceita = valorReceita;
 		this.usuario = usuario;
 	}
@@ -64,13 +60,12 @@ public class Receita {
 		this.descricao = descricao;
 	}
 
-	
-	public Date getDataReceita() {
-		return dataReceita;
+	public String getTipo() {
+		return tipo;
 	}
 
-	public void setDataReceita(Date dataReceita) {
-		this.dataReceita = dataReceita;
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 
 	public double getValorReceita() {
