@@ -21,7 +21,7 @@ public class Receita {
 	private String descricao;
 
 	@Column(name = "Tipo")
-	@NotBlank(message = "Informe a descricao")
+	@NotBlank(message = "Informe o tipo")
 	private String tipo;
 
 	@Column(name = "vlReceita")
