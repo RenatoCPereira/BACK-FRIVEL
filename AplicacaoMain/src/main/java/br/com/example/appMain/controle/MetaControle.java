@@ -21,7 +21,7 @@ import br.com.example.appMain.model.repositorio.MetaRepositorio;
 
 //CHAMADA DA CLASSE
 @RestController
-@RequestMapping("/api/meta")
+@RequestMapping("/metas")
 public class MetaControle {
 
 	// INSTANCIANDO O REPOSITORIO

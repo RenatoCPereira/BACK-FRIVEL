@@ -1,6 +1,7 @@
 package br.com.example.appMain.model.entidades;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -115,6 +116,28 @@ public class Gastos {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(categoria, descricao, dtGastos, idGasto, tipoDoGasto, usuario, valor);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Gastos other = (Gastos) obj;
+		return Objects.equals(categoria, other.categoria) && Objects.equals(descricao, other.descricao)
+				&& Objects.equals(dtGastos, other.dtGastos) && idGasto == other.idGasto
+				&& Objects.equals(tipoDoGasto, other.tipoDoGasto) && Objects.equals(usuario, other.usuario)
+				&& Double.doubleToLongBits(valor) == Double.doubleToLongBits(other.valor);
+	}
+	
+	
 	
 
 }

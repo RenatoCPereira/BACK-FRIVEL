@@ -21,13 +21,15 @@ import br.com.example.appMain.model.repositorio.UsuarioRepositorio;
 
 // CHAMADA DA CLASSE
 @RestController
-@RequestMapping("/api/usuario")
+@RequestMapping("/usuarios")
 public class UsuarioControle {
 
 	private static final int Usuario = 0;
 	// INSTANCIANDO O REPOSITORIO
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
+
+	// criar uma chamada com email e senha
 
 	// CHAMADA DO METODO PARA INCLUIR USUARIO
 	@PostMapping("/novousuario")
@@ -81,10 +83,10 @@ public class UsuarioControle {
 	}
 
 	//// CHAMADA DO METODO LOGIN
-	@GetMapping(path = "/{login}/{senha}")
-	public Optional<Usuario> logar(@PathVariable String login, @PathVariable String senha) {
-		Optional<Usuario> usu = usuarioRepositorio.findByEmailAndSenha(login, senha);
-		return usu;
+	@GetMapping(path = "/{email}/{senha}")
+	public Optional<Usuario> logar(@PathVariable String email, @PathVariable String senha) {
+		Optional<Usuario> usuario = usuarioRepositorio.findByEmailAndSenha(email, senha);
+		return usuario;
 
 	}
 

@@ -10,6 +10,6 @@ public interface UsuarioRepositorio extends PagingAndSortingRepository<Usuario, 
 
 	public Iterable<Usuario> findByNomeContainingIgnoreCase(String parteNome);
 	
-	public Optional<Usuario> findByEmailAndSenha(String login, String senha);
+	public Optional<Usuario> findByEmailAndSenha(String email, String senha);
 
 }

@@ -1,6 +1,7 @@
 package br.com.example.appMain.model.entidades;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -100,5 +101,26 @@ public class Meta {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(descricao, dtMeta, idMeta, nome, usuario, vlMeta);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Meta other = (Meta) obj;
+		return Objects.equals(descricao, other.descricao) && Objects.equals(dtMeta, other.dtMeta)
+				&& idMeta == other.idMeta && Objects.equals(nome, other.nome) && Objects.equals(usuario, other.usuario)
+				&& Double.doubleToLongBits(vlMeta) == Double.doubleToLongBits(other.vlMeta);
+	}
+	
+	
 
 }

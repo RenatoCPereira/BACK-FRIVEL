@@ -1,6 +1,8 @@
 package br.com.example.appMain.model.entidades;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,12 +13,16 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	// endereco
 
 	@Column(name = "Nome")
 	@NotBlank(message = "Informe o nome")
@@ -31,6 +37,10 @@ public class Usuario {
 	@Email
 	private String email;
 
+	@Column(name = "DataNascimento")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dataNascimento;
+
 	@OneToMany(mappedBy = "usuario")
 	private List<Meta> meta;
 
@@ -44,12 +54,15 @@ public class Usuario {
 	}
 
 	public Usuario(int id, @NotBlank(message = "Informe o nome") String nome,
-			@NotBlank(message = "Informe a senha") String senha, @NotBlank(message = "Informe o email") String email,
-			List<Meta> meta, List<Receita> receita, List<Gastos> gastos) {
+			@NotBlank(message = "Informe a senha") String senha,
+			@NotBlank(message = "Informe o email") @Email String email, LocalDate dataNascimento, List<Meta> meta,
+			List<Receita> receita, List<Gastos> gastos) {
+		super();
 		this.id = id;
 		this.nome = nome;
 		this.senha = senha;
 		this.email = email;
+		this.dataNascimento = dataNascimento;
 		this.meta = meta;
 		this.receita = receita;
 		this.gastos = gastos;
@@ -87,6 +100,14 @@ public class Usuario {
 		this.email = email;
 	}
 
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+
 	public List<Meta> getMeta() {
 		return meta;
 	}
@@ -110,6 +131,27 @@ public class Usuario {
 	public void setGastos(List<Gastos> gastos) {
 		this.gastos = gastos;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(dataNascimento, email, gastos, id, meta, nome, receita, senha);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		return Objects.equals(dataNascimento, other.dataNascimento) && Objects.equals(email, other.email)
+				&& Objects.equals(gastos, other.gastos) && id == other.id && Objects.equals(meta, other.meta)
+				&& Objects.equals(nome, other.nome) && Objects.equals(receita, other.receita)
+				&& Objects.equals(senha, other.senha);
+	}
+	
 	
 
 }

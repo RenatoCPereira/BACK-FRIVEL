@@ -20,7 +20,7 @@ import br.com.example.appMain.model.entidades.Gastos;
 import br.com.example.appMain.model.repositorio.GastosRepositorio;
 
 @RestController
-@RequestMapping("/api/gastos")
+@RequestMapping("/gastos")
 public class GastosControle {
 	
 	@Autowired

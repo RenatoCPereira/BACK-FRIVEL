@@ -1,5 +1,7 @@
 package br.com.example.appMain.model.entidades;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -83,5 +85,26 @@ public class Receita {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(descricao, idReceita, tipo, usuario, valorReceita);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Receita other = (Receita) obj;
+		return Objects.equals(descricao, other.descricao) && idReceita == other.idReceita
+				&& Objects.equals(tipo, other.tipo) && Objects.equals(usuario, other.usuario)
+				&& Double.doubleToLongBits(valorReceita) == Double.doubleToLongBits(other.valorReceita);
+	}
+	
+	
 
 }

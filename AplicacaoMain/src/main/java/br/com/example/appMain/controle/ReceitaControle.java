@@ -20,7 +20,7 @@ import br.com.example.appMain.model.entidades.Receita;
 import br.com.example.appMain.model.repositorio.ReceitaRepositorio;
 
 @RestController
-@RequestMapping("/api/receita")
+@RequestMapping("/receitas")
 public class ReceitaControle {
 	
 	@Autowired
